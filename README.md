@@ -1,5 +1,20 @@
 # Github Basics
 
+- [🧲 00 - How to Clone a GitHub Repository](https://github.com/nakul-py/github-basics#-00---how-to-clone-a-github-repository)
+
+- [🌿 01 - Branches in Git](https://github.com/nakul-py/github-basics#-01---branches-in-git)
+
+- [🚀 02 - Git Add, Stash, and Push](https://github.com/nakul-py/github-basics#-02---git-add-stash-and-push)
+
+- [📜 03 - Viewing Commit History with git log](https://github.com/nakul-py/github-basics#-03---viewing-commit-history-with-git-log)
+
+- [🗑️ 04 - Remove a Commit, Push, and Retrieve It (Force Push & Recovery)](https://github.com/nakul-py/github-basics#%EF%B8%8F-04---remove-a-commit-push-and-retrieve-it-force-push--recovery)
+
+- [🚀 05 - Pulling Updates from a Remote Repository
+](https://github.com/nakul-py/github-basics#-05---pulling-updates-from-a-remote-repository)
+
+- [📌 06 - Working with Remotes](https://github.com/nakul-py/github-basics#-06---working-with-remotes)
+
 ## 🧲 00 - How to Clone a GitHub Repository
 
 ### 🚀 **What Does “Cloning” Mean?**
