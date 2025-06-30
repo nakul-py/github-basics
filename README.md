@@ -143,7 +143,7 @@ git add filename.txt
 git add .
 ```
 
-#### 🧩 Forcing a File to Be Tracked:
+#### 🧩 Forcing a File to Be Tracked
 
 Sometimes, Git will ignore files listed in .gitignore. But what if you intentionally want to commit one of those ignored files?
 
@@ -156,6 +156,7 @@ git add --force .yarnclean
 
 git add --force filename.txt
 ```
+
 This command means:
 
 - `git add` → Stage the file
@@ -167,6 +168,8 @@ This command means:
 #### 💡 Why This is Useful
 
 In some projects, .yarnclean or any other file is added to .gitignore, but you might still want to track it for consistent cleanup across machines.
+
+------------------------------------------------------------------------------------------------
 
 ### 🧙 What is `git stash`?
 
@@ -200,6 +203,8 @@ git stash drop
 
 Tip: Use `git stash -u` or `git stash --include-untracked` to include untracked files too.
 
+------------------------------------------------------------------------------------------------
+
 ### 🚀 What is `git push`?
 
 `git push` sends your local commits to the remote repository.
@@ -222,3 +227,208 @@ git push --set-upstream origin branch-name
 git push -u origin branch-name
 ```
 
+## 📜 03 - Viewing Commit History with `git log`
+
+### 🧠 What is `git log`?
+
+`git log` shows the history of commits in your current branch — what was committed, by whom, and when.
+
+### 🔧 Basic Usage
+
+```bash
+git log
+```
+
+Output:
+
+```sql
+commit 6e4f3f8f (HEAD -> feature-xyz, origin/feature-xyz)
+Author: Firstname Lastname <user@example.com>
+Date:   Sun Jan 1 00:00:00 2022 +0000
+
+    feat: Add new file
+```
+
+### 🧩 Useful Options
+
+| Command                        | What it does                                        |
+| ------------------------------ | --------------------------------------------------- |
+| `git log --oneline`            | Show each commit in one line (short hash + message) |
+| `git log --graph`              | Show a visual commit tree                           |
+| `git log -p`                   | Show the diff introduced by each commit             |
+| `git log --stat`               | Show files changed + insertions/deletions           |
+| `git log --author="nakul"`     | Show commits by a specific author                   |
+| `git log --since="2 days ago"` | Show recent commits                                 |
+| `git log -- <filename>`        | Show commits that touched a specific file           |
+
+## 🗑️ 04 - Remove a Commit, Push, and Retrieve It (Force Push & Recovery)
+
+### 🧾 Use git log to Find a Commit
+
+```bash
+git log
+```
+
+--------------------------------------------------------------------------------------------------------
+
+### ❌ How to Remove the Last Commit
+
+#### 🔹 1. Remove last commit but keep changes (editable)
+
+```bash
+git reset --soft HEAD~1
+```
+
+This keeps your changes in staging (`git status` will show them as "to be committed").
+
+#### 🔹 2. Remove last commit and unstage changes
+
+```bash
+git reset --mixed HEAD~1
+```
+
+Changes go back to the working directory, not staged.
+
+#### 🔹 3. Remove last commit and discard changes (permanent)
+
+```bash
+git reset --hard HEAD~1
+```
+
+⚠️ This deletes the commit and all local changes.
+
+____________________________________________________________________________
+
+### 🚀 Push the Updated History
+
+After removing a commit, your local branch history is now different **HEAD** from the remote. So you'll need to force push:
+
+```bash
+git push origin --force
+```
+
+### 🔄 Retrieve a Removed Commit (If You Didn't Hard Reset)
+
+You can retrieve commits even after removal, if they haven’t been garbage collected.
+
+#### 🕵️ Find the commit hash
+
+```bash
+git reflog
+```
+
+This shows a log of all HEAD movements — even ones you've undone.
+
+Example:
+
+```kotlin
+abc1234 HEAD@{1}: commit: added something
+```
+
+#### 🧙‍♂️ Recover it
+
+```bash
+git checkout abc1234
+# or
+git reset --hard abc1234
+```
+
+### 🧠 Tip: Safer Way to Undo Commits
+
+Instead of `git reset`, you can also use `git revert`:
+
+```bash
+git revert HEAD
+```
+
+This creates a **new commit** that undoes the last one — safer for public branches.
+
+## 🚀 05 - Pulling Updates from a Remote Repository
+
+### 🧠 What is `git pull`?
+
+`git pull` updates your local branch with the latest changes from the remote repository.
+
+### 🔧 Common Command
+
+```bash
+git pull
+```
+
+---------------------------------------------------------------------------------------------------
+
+### 🧙 What is `git fetch`?
+
+`git fetch` downloads updates from the remote repository without merging them into your local branch.
+
+### 🔧 Common Command
+
+```bash
+git fetch
+```
+
+-------------------------------------------------------------------------------------------------------
+
+### 🚀 What is `git merge`?
+
+`git merge` merges changes from one branch into another.
+
+### 🔧 Common Command
+
+```bash
+git merge feature-xyz
+```
+
+-------------------------------------------------------------------------------------------------------
+
+### 🚀 What is `git rebase`?
+
+`git rebase` updates the history of a branch by applying the commits from another branch on top of it.
+
+### 🔧 Common Command
+
+```bash
+git rebase feature-xyz
+```
+
+-------------------------------------------------------------------------------------------------------
+
+### 🚀 What is `git reset`?
+
+`git reset` undoes local changes to tracked files.
+
+### 🔧 Common Command
+
+```bash
+git reset --hard HEAD
+```
+
+-------------------------------------------------------------------------------------------------------
+
+## 📌 06 - Working with Remotes
+
+### 🧠 What is `git remote`?
+
+`git remote` lets you list and add remotes.
+
+### 🔧 Common Commands
+
+- List remotes:
+
+```bash
+git remote
+```
+
+- Add a remote:
+
+```bash
+git remote add origin https://github.com/username/repo-name.git
+```
+
+- Remove a remote:
+
+```bash
+git remote remove origin
+```
+
+-------------------------------------------------------------------------------------------------------
